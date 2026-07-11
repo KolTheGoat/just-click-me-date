@@ -224,6 +224,24 @@ h2 {
   background: #fff4f9;
 }
 
+.custom-activity-option {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 14px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 10px 24px rgba(106, 48, 73, 0.1);
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.custom-activity-option.is-selected {
+  border-color: var(--hot-pink);
+  background: #fff4f9;
+}
+
 .activity-icon {
   display: inline-flex;
   min-width: 74px;

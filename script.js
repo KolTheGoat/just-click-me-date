@@ -23,6 +23,8 @@ const yesButton = document.querySelector("#yesButton");
 const noMessage = document.querySelector("#noMessage");
 const dateInput = document.querySelector("#dateInput");
 const timeInput = document.querySelector("#timeInput");
+const customActivityInput = document.querySelector("#customActivityInput");
+const customActivityOption = document.querySelector("#customActivityOption");
 const summaryCard = document.querySelector("#summaryCard");
 const googleCalendarLink = document.querySelector("#googleCalendarLink");
 const outlookCalendarLink = document.querySelector("#outlookCalendarLink");
@@ -91,7 +93,7 @@ function escapeIcsText(value) {
 
 function buildDetails() {
   return {
-    activity: state.activity,
+    activity: state.activity === "custom" ? customActivityInput.value.trim() || "You choose" : state.activity,
     date: formatDate(state.date),
     time: formatTime(state.time),
   };
@@ -208,9 +210,21 @@ document.querySelectorAll("[data-back]").forEach((button) => {
 document.querySelectorAll(".activity-card").forEach((button) => {
   button.addEventListener("click", () => {
     document.querySelectorAll(".activity-card").forEach((card) => card.classList.remove("is-selected"));
+    customActivityOption.classList.remove("is-selected");
     button.classList.add("is-selected");
     state.activity = button.dataset.activity;
   });
+});
+
+customActivityInput.addEventListener("focus", () => {
+  document.querySelectorAll(".activity-card").forEach((card) => card.classList.remove("is-selected"));
+  customActivityOption.classList.add("is-selected");
+  state.activity = "custom";
+});
+
+customActivityInput.addEventListener("input", () => {
+  customActivityOption.classList.add("is-selected");
+  state.activity = "custom";
 });
 
 document.querySelector("#dateForm").addEventListener("submit", (event) => {
