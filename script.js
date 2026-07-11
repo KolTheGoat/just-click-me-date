@@ -26,11 +26,13 @@ const timeInput = document.querySelector("#timeInput");
 const customActivityInput = document.querySelector("#customActivityInput");
 const customActivityOption = document.querySelector("#customActivityOption");
 const summaryCard = document.querySelector("#summaryCard");
+const submitStatus = document.querySelector("#submitStatus");
 const googleCalendarLink = document.querySelector("#googleCalendarLink");
 const outlookCalendarLink = document.querySelector("#outlookCalendarLink");
 const downloadIcsButton = document.querySelector("#downloadIcsButton");
 
 let noClicks = 0;
+const formspreeEndpoint = "https://formspree.io/f/mqerzanp";
 
 function showScreen(name) {
   screens.forEach((screen) => {
@@ -180,7 +182,40 @@ function updateSummary() {
     <div><strong>Time:</strong> ${details.time}</div>
   `;
 
+  submitStatus.className = "submit-status is-sending";
+  submitStatus.textContent = "Sending the details...";
   buildCalendarLinks(details);
+}
+
+async function sendDateDetails(details) {
+  const payload = {
+    _subject: "New date invite response",
+    activity: details.activity,
+    date: details.date,
+    time: details.time,
+    message: buildEventDescription(details),
+  };
+
+  try {
+    const response = await fetch(formspreeEndpoint, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error("Formspree rejected the response");
+    }
+
+    submitStatus.className = "submit-status is-sent";
+    submitStatus.textContent = "Sent to Kol.";
+  } catch (error) {
+    submitStatus.className = "submit-status is-error";
+    submitStatus.textContent = "The date is saved here, but the email did not send. Try again in a minute.";
+  }
 }
 
 yesButton.addEventListener("click", () => {
@@ -233,6 +268,7 @@ document.querySelector("#dateForm").addEventListener("submit", (event) => {
   state.time = timeInput.value;
   updateSummary();
   showScreen("done");
+  sendDateDetails(buildDetails());
 });
 
 downloadIcsButton.addEventListener("click", () => {

@@ -306,6 +306,24 @@ input:focus {
   color: var(--ink);
 }
 
+.submit-status {
+  margin: 14px 0 0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.submit-status.is-sent {
+  color: var(--green);
+}
+
+.submit-status.is-error {
+  color: #a33b54;
+}
+
 .calendar-actions {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
