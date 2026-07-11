@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: just-click-me-date
+    runtime: static
+    buildCommand: node render-build.mjs
+    staticPublishPath: ./render-dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
