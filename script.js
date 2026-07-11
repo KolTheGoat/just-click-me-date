@@ -37,7 +37,9 @@ const formspreeEndpoint = "https://formspree.io/f/mqerzanp";
 function showScreen(name) {
   screens.forEach((screen) => {
     screen.classList.toggle("is-active", screen.dataset.screen === name);
+    screen.scrollTop = 0;
   });
+  window.scrollTo(0, 0);
 }
 
 function formatDate(value) {
