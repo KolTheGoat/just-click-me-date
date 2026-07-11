@@ -1,13 +1,7 @@
 {
   "scripts": {
-    "build": "vite build"
+    "build": "node build.mjs"
   },
-  "dependencies": {
-    "@vitejs/plugin-react": "latest",
-    "vite": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "lucide-react": "latest"
-  },
+  "dependencies": {},
   "devDependencies": {}
 }
