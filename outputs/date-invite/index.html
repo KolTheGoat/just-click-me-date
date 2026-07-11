@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>just click me</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell" aria-live="polite">
+      <section class="screen screen-question is-active" data-screen="question">
+        <div class="question-card">
+          <p class="eyebrow">A very important question</p>
+          <h1>Do u want to go on a date with me?</h1>
+          <div class="button-row question-actions">
+            <button class="primary-btn" id="yesButton" type="button">Yes</button>
+            <button class="secondary-btn" id="noButton" type="button">No</button>
+          </div>
+          <p class="tiny-note" id="noMessage">Choose wisely.</p>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="activities">
+        <div class="flow-panel">
+          <button class="icon-back" type="button" data-back="question" aria-label="Back">&lt;</button>
+          <p class="eyebrow">First things first</p>
+          <h2>What are we doing?</h2>
+          <p class="subcopy">Pick one for now. I can change these activities later.</p>
+
+          <div class="activity-grid" id="activityGrid">
+            <button class="activity-card is-selected" type="button" data-activity="Dinner date">
+              <span class="activity-icon">Dinner</span>
+              <span>Dinner date</span>
+            </button>
+            <button class="activity-card" type="button" data-activity="Movie night">
+              <span class="activity-icon">Movie</span>
+              <span>Movie night</span>
+            </button>
+            <button class="activity-card" type="button" data-activity="Coffee and dessert">
+              <span class="activity-icon">Cafe</span>
+              <span>Coffee and dessert</span>
+            </button>
+            <button class="activity-card" type="button" data-activity="Mini adventure">
+              <span class="activity-icon">Explore</span>
+              <span>Mini adventure</span>
+            </button>
+          </div>
+
+          <button class="primary-btn wide-btn" type="button" data-next="schedule">Next</button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="schedule">
+        <div class="flow-panel">
+          <button class="icon-back" type="button" data-back="activities" aria-label="Back">&lt;</button>
+          <p class="eyebrow">Now pick the when</p>
+          <h2>Choose the date and time</h2>
+          <p class="subcopy">No pressure. Okay, maybe a tiny bit.</p>
+
+          <form class="date-form" id="dateForm">
+            <label>
+              <span>Date</span>
+              <input id="dateInput" name="date" type="date" required />
+            </label>
+            <label>
+              <span>Time</span>
+              <input id="timeInput" name="time" type="time" required />
+            </label>
+            <button class="primary-btn wide-btn" type="submit">Next</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="done">
+        <div class="flow-panel final-panel">
+          <p class="eyebrow">It is officially a date</p>
+          <h2>Details ready</h2>
+          <div class="summary-card" id="summaryCard"></div>
+          <div class="calendar-actions" aria-label="Calendar actions">
+            <a class="secondary-btn" id="googleCalendarLink" href="#" target="_blank" rel="noopener">Google Calendar</a>
+            <a class="secondary-btn" id="outlookCalendarLink" href="#" target="_blank" rel="noopener">Outlook Calendar</a>
+            <button class="secondary-btn" id="downloadIcsButton" type="button">Download calendar file</button>
+          </div>
+          <button class="secondary-btn wide-btn" type="button" data-next="question">Start over</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

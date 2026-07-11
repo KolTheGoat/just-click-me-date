@@ -1,0 +1,331 @@
+:root {
+  color-scheme: light;
+  --pink: #ff6fa8;
+  --hot-pink: #ec3f88;
+  --rose: #ffe1ed;
+  --cream: #fff8f3;
+  --ink: #442031;
+  --muted: #7f5566;
+  --green: #457b5c;
+  --yellow: #f8c35d;
+  --shadow: 0 22px 70px rgba(180, 35, 96, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
+  background: var(--rose);
+}
+
+button,
+input,
+a {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(255, 218, 232, 0.42), rgba(255, 246, 250, 0.8)),
+    url("assets/date-bg.png") center / cover no-repeat;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(18px) scale(0.98);
+  transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.screen.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.question-card,
+.flow-panel {
+  width: min(100%, 620px);
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  border-radius: 8px;
+  background: rgba(255, 248, 251, 0.86);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.question-card {
+  display: grid;
+  gap: 24px;
+  justify-items: center;
+  padding: clamp(34px, 8vw, 72px);
+  text-align: center;
+}
+
+.flow-panel {
+  position: relative;
+  padding: clamp(28px, 5vw, 46px);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--hot-pink);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+h1 {
+  max-width: 560px;
+  font-size: clamp(3rem, 10vw, 5.85rem);
+}
+
+h2 {
+  margin-top: 8px;
+  font-size: clamp(2.35rem, 6vw, 4rem);
+}
+
+.subcopy,
+.tiny-note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.tiny-note {
+  min-height: 1.5em;
+  font-weight: 700;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.primary-btn,
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 28px;
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--hot-pink), #ff7d65);
+  box-shadow: 0 14px 26px rgba(236, 63, 136, 0.32);
+}
+
+.secondary-btn {
+  color: var(--ink);
+  background: white;
+  box-shadow: 0 10px 22px rgba(106, 48, 73, 0.14);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover,
+.activity-card:hover,
+.icon-back:hover {
+  transform: translateY(-2px);
+}
+
+.wide-btn {
+  width: 100%;
+  margin-top: 22px;
+}
+
+#yesButton {
+  min-width: 124px;
+}
+
+#noButton {
+  min-width: 104px;
+}
+
+.icon-back {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  color: var(--hot-pink);
+  background: white;
+  box-shadow: 0 10px 22px rgba(106, 48, 73, 0.12);
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.activity-card {
+  display: grid;
+  min-height: 118px;
+  place-items: center;
+  gap: 8px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 18px 12px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 10px 24px rgba(106, 48, 73, 0.1);
+  cursor: pointer;
+  text-align: center;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.activity-card.is-selected {
+  border-color: var(--hot-pink);
+  background: #fff4f9;
+}
+
+.activity-icon {
+  display: inline-flex;
+  min-width: 74px;
+  min-height: 30px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--rose);
+  color: var(--hot-pink);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.date-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+input {
+  width: 100%;
+  min-height: 54px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 0 16px;
+  color: var(--ink);
+  background: white;
+  box-shadow: 0 10px 24px rgba(106, 48, 73, 0.1);
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--hot-pink);
+}
+
+.final-panel {
+  text-align: center;
+}
+
+.summary-card {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+  border-radius: 8px;
+  padding: 18px;
+  background: white;
+  color: var(--muted);
+  text-align: left;
+  box-shadow: 0 10px 24px rgba(106, 48, 73, 0.1);
+}
+
+.summary-card strong {
+  color: var(--ink);
+}
+
+.calendar-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.calendar-actions .secondary-btn {
+  min-height: 48px;
+  padding: 0 14px;
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .screen {
+    padding: 18px;
+  }
+
+  .question-card {
+    padding: 34px 20px;
+  }
+
+  .activity-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .button-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    width: 100%;
+  }
+
+  .calendar-actions {
+    grid-template-columns: 1fr;
+  }
+}
