@@ -1,5 +1,5 @@
 const state = {
-  activity: "Dinner date",
+  activity: "Pizza",
   date: "",
   time: "",
 };
